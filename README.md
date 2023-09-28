@@ -4,7 +4,7 @@ the servo as a gateway for the water the shaft opens up when the temperature goe
 the motor starts churning once the water is added.
 The temperature Values are updated on the mobile app every 5 minutes
 
-NodeMCU and Riscduino communicate via the UART protocol via the RX and TX pins in the node MCU and pins D0 and D1 for RX and TX respectively in  arduino and Pins digital_io[6] and digital_io[7] for RX and TX respectively
+NodeMCU and Riscduino communicate via the UART protocol via the RX and TX pins in the node MCU and pins D0 and D1 for RX and TX respectively in Arduino UNO and pins digital_io[6] and digital_io[7] for RX and TX respectively in Riscduino UNO
 
 # Arduino UNO compilation output
 
