@@ -1,105 +1,101 @@
-/*
-  1. check temp and moisture level, if temp>35 and moisture<30 then run shaft
-  2. shaft turns 90 degree to open water gate
-  3. rught after this motor starts to turn
-*/
-#include <Servo.h>
+#include <Servo.h> // Include the Servo library to control the servo motor.
 
-     Servo myservo;
-     const int ultrasonicTrigPin = 9;
-     const int ultrasonicEchoPin = 10;
-     const int soilMoisturePin = A0;
-     const int tempPin = A2;
-     const int servoPin = 6;
-     const int motor = 13;
-     unsigned long previousMillis = 0;
-     const long interval = 5000;  
+Servo myservo; // Create a Servo object named "myservo" to control the servo.
+const int ultrasonicTrigPin = 9; // Define the trigger pin for the ultrasonic sensor.
+const int ultrasonicEchoPin = 10; // Define the echo pin for the ultrasonic sensor.
+const int soilMoisturePin = A0; // Define the analog pin for the soil moisture sensor.
+const int tempPin = A2; // Define the analog pin for the temperature sensor.
+const int servoPin = 6; // Define the pin connected to the servo motor.
+const int motor = 13; // Define the pin connected to the motor.
 
 void setup() {
-       Serial.begin(9600);
-       myservo.attach(6, 500, 2500);
+  Serial.begin(9600); // Initialize serial communication at 9600 baud rate.
+  myservo.attach(6, 500, 2500); // Attach the servo to pin 6 and specify min and max pulse widths.
 
-       pinMode(ultrasonicTrigPin, OUTPUT);
-       pinMode(ultrasonicEchoPin, INPUT);
+  pinMode(ultrasonicTrigPin, OUTPUT); // Set ultrasonic trigger pin as an OUTPUT.
+  pinMode(ultrasonicEchoPin, INPUT); // Set ultrasonic echo pin as an INPUT.
 
-       pinMode(soilMoisturePin, INPUT);
-       pinMode(tempPin, INPUT);
+  pinMode(soilMoisturePin, INPUT); // Set soil moisture pin as an INPUT.
+  pinMode(tempPin, INPUT); // Set temperature pin as an INPUT.
 
-       pinMode(servoPin, OUTPUT);
-       pinMode(motor, OUTPUT);
+  pinMode(servoPin, OUTPUT); // Set servo pin as an OUTPUT.
+  pinMode(motor, OUTPUT); // Set motor pin as an OUTPUT.
 }
 
+void loop() {
+  unsigned long currentMillis = millis(); // Get the current value of millis().
 
+  // Check if it's time to run the code based on the defined interval.
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis; // Update the previousMillis value.
 
-void loop(){
-     unsigned long currentMillis = millis();
+    float temperatureC = temp_sensor(); // Read the temperature sensor.
+    int distance_cm = ultrasonic(); // Read the ultrasonic sensor.
+    int soilMoisture = soil_sensor(); // Read the soil moisture sensor.
 
-    if (currentMillis - previousMillis >= interval) {
-     previousMillis = currentMillis;
-
-    float temperatureC = temp_sensor();
-    int distance_cm = ultrasonic();
-    int soilMoisture = soil_sensor();
-    
-    if (temperatureC > 30 || soilMoisture < 60) {
-      digitalWrite(motor, HIGH);
-      run_shaft();
+    // Check conditions for running the motor and shaft.
+    if (temperatureC > 35 && soilMoisture < 30) {
+      digitalWrite(motor, HIGH); // Turn on the motor.
+      run_shaft(); // Run the water shaft (servo motor).
     } else {
-      digitalWrite(motor, LOW);
+      digitalWrite(motor, LOW); // Turn off the motor if conditions are not met.
     }
 
-    if (distance_cm > 30 && distance_cm <40) {
-      run_shaft();
+    // Check if the distance measured by the ultrasonic sensor is within a specific range.
+    if (distance_cm > 30 && distance_cm < 40) {
+      run_shaft(); // Run the water shaft (servo motor).
     }
-    
   }
 }
 
+// Function to control the servo motor to run the shaft.
 void run_shaft() {
-    int pos = 0;
-    int i;
-   for (i = 0; i < 5; i += 1) {
+  int pos = 0;
+  int i;
+  for (i = 0; i < 5; i += 1) {
+    // Move the servo from 0 to 180 degrees.
     for (pos = 0; pos <= 180; pos += 1) {
-      myservo.write(pos);
-      delay(7);
+      myservo.write(pos); // Set the servo position.
+      delay(7); // Delay to control the speed of movement.
     }
 
+    // Move the servo from 180 to 0 degrees (backwards).
     for (pos = 180; pos >= 0; pos -= 1) {
-      myservo.write(pos);
-      delay(7);
+      myservo.write(pos); // Set the servo position.
+      delay(7); // Delay to control the speed of movement.
     }
-   }
-   delay(5000);
+  }
+  delay(5000);
 }
 
-    
-// Ultrasonic Sensor           
+// Function to read the ultrasonic sensor.
 int ultrasonic() {
-      long duration;
-      int distance_cm;
+  long duration;
+  int distance_cm;
 
-      digitalWrite(ultrasonicTrigPin, LOW);
-      delayMicroseconds(2);
-      digitalWrite(ultrasonicTrigPin, HIGH);
-      delayMicroseconds(10);
-      digitalWrite(ultrasonicTrigPin, LOW);
-      duration = pulseIn(ultrasonicEchoPin, HIGH);
-      distance_cm = duration * 0.034 / 2;
-      return (distance_cm);
+  digitalWrite(ultrasonicTrigPin, LOW); // Ensure the trigger pin is low.
+  delayMicroseconds(2); // Short delay.
+  digitalWrite(ultrasonicTrigPin, HIGH); // Send a 10us pulse to trigger the sensor.
+  delayMicroseconds(10); // Wait for the pulse to settle.
+  digitalWrite(ultrasonicTrigPin, LOW); // Turn off the trigger pulse.
+
+  duration = pulseIn(ultrasonicEchoPin, HIGH); // Measure the duration of the echo pulse.
+  distance_cm = duration * 0.034 / 2; // Convert duration to distance in centimeters.
+  return (distance_cm); // Return the measured distance.
 }
 
-// Soil Moisture Sensor
+// Function to read the soil moisture sensor.
 int soil_sensor() {
-  int soilMoisture = analogRead(soilMoisturePin);
-  return (soilMoisture);
+  int soilMoisture = analogRead(soilMoisturePin); // Read analog value from soil moisture sensor.
+  return (soilMoisture); // Return the soil moisture value.
 }
 
-// Temperature Sensor
+// Function to read the temperature sensor.
 float temp_sensor() {
   float temperatureC = map(((analogRead(tempPin) - 20) * 3.04), 0, 1023, -40, 125);
+  // Map the analog reading to temperature in degrees Celsius.
   Serial.print("\nTemperature: ");
   Serial.print(temperatureC);
-  Serial.println(" °C");
-  return (temperatureC);
+  Serial.println(" °C"); // Print temperature reading to serial monitor.
+  return (temperatureC); // Return the temperature in degrees Celsius.
 }
-
