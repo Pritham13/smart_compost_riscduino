@@ -2,7 +2,7 @@
 The smart compost system automates the composting process by monitoring moisture and temperature levels. It ensures ideal conditions for decomposition, adding water when it's too dry and adjusting temperature as needed. This system promotes efficient composting, logs data, and can be controlled remotely, offering a convenient and sustainable approach to compost management.
 the servo as a gateway for the water the shaft opens up when the temperature goes beyond 30 degrees and the soil moisture level is less than 30 percent
 the motor starts churning once the water is added
-the temperature Values r updated on the app every 5 minutes
+the temperature Values are updated on the mobile app every 5 minutes
 
 # Arduino UNO compilation output
 
