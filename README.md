@@ -10,12 +10,13 @@ NodeMCU and Riscduino communicate via the UART protocol via the RX and TX pins i
 
 | Component name  | Quantity Required | Unit price | Total Price (Unit price*Quantity) |                  
 |-----------------|-----------------|-----------------|-----------------|
-| Ultrasonic Sensor    | 1       | 220              | 220               |
-| DC motor             | 1       | 300              | 300               |
-| Moisture Sensor      | 1       | 100              | 100               |
-| Servo                | 1       | 175              | 175               |
-| L293D Motor Driver   | 1       | 120              | 120               |
-| WIFI module          | 1       | 200              | 200               |
+| Ultrasonic Sensor    | 1       | Rs. 220          | Rs. 220           |
+| DC motor             | 1       | Rs. 300          | Rs. 300           |
+| Moisture Sensor      | 1       | Rs. 100          | Rs. 100           |
+| Servo                | 1       | Rs. 175          | Rs. 175           |
+| L293D Motor Driver   | 1       | Rs. 120          | Rs. 120           |
+| NODEMCU ESP8266         | 1       | Rs. 230          | Rs. 230           |
+
 
 
 # Arduino UNO compilation output
