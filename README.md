@@ -6,6 +6,18 @@ The temperature Values are updated on the mobile app every 5 minutes
 
 NodeMCU and Riscduino communicate via the UART protocol via the RX and TX pins in the node MCU and pins D0 and D1 for RX and TX respectively in Arduino UNO and pins digital_io[6] and digital_io[7] for RX and TX respectively in Riscduino UNO
 
+# BOM
+
+| Component name  | Quantity Required | Unit price | Total Price (Unit price*Quantity) |                  
+|-----------------|-----------------|-----------------|-----------------|
+| Ultrasonic Sensor    | 1       | 220              | 220               |
+| DC motor             | 1       | 300              | 300               |
+| Moisture Sensor      | 1       | 100              | 100               |
+| Servo                | 1       | 175              | 175               |
+| L293D Motor Driver   | 1       | 120              | 120               |
+| WIFI module          | 1       | 200              | 200               |
+
+
 # Arduino UNO compilation output
 
 ![image](https://github.com/Pritham13/smart_compost_riscduino/assets/143584964/b2db2d93-1001-494c-8b14-84908890d536)
