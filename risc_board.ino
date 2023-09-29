@@ -37,7 +37,8 @@ void setup() {
 void loop() {
   unsigned long currentMillis = millis(); // Get the current value of millis().
   unsigned long interval=20000;
-
+  digitalWrite(motorEnablePin1, LOW);
+  
   // Check if it's time to run the code based on the defined interval.
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis; // Update the previousMillis value.
@@ -62,6 +63,8 @@ void loop() {
     // Turns on the water supply once the waste reaches certain quantity in the bin.
     if (distance_cm < 30) {
       run_shaft(); // Run the water shaft (servo motor).
+      digitalWrite(motorEnablePin1, HIGH);
+      delay(5000);
     }
   }
 }
