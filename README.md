@@ -18,8 +18,9 @@ NodeMCU and Riscduino communicate via the UART protocol via the RX and TX pins i
 | NODEMCU ESP8266         | 1       | Rs. 230          | Rs. 230           |
 | LM35 Temperature Sensor   | 1       | Rs. 130          | Rs. 130           |
 | 12V 4 x AA Battery Clip Slot Holder   | 1       | Rs. 179          | Rs. 179           |
+| Dustbin   | 1       | Rs. 219          | Rs. 219           |
 
-Total cost (or) BOM = Rs. 1454
+Total cost (or) BOM = Rs. 1674
 
 # Arduino UNO compilation output
 
