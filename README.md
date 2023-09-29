@@ -16,8 +16,10 @@ NodeMCU and Riscduino communicate via the UART protocol via the RX and TX pins i
 | Servo                | 1       | Rs. 175          | Rs. 175           |
 | L293D Motor Driver   | 1       | Rs. 120          | Rs. 120           |
 | NODEMCU ESP8266         | 1       | Rs. 230          | Rs. 230           |
+| LM35 Temperature Sensor   | 1       | Rs. 130          | Rs. 130           |
+| 12V 4 x AA Battery Clip Slot Holder   | 1       | Rs. 179          | Rs. 179           |
 
-
+Total cost (or) BOM = Rs. 1454
 
 # Arduino UNO compilation output
 
