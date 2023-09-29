@@ -21,13 +21,14 @@ NodeMCU and Riscduino communicate via the UART protocol via the RX and TX pins i
 
 # Arduino UNO compilation output
 
-![image](https://github.com/Pritham13/smart_compost_riscduino/assets/143584964/b2db2d93-1001-494c-8b14-84908890d536)
+![Screenshot (333)](https://github.com/Pritham13/smart_compost_riscduino/assets/137704414/95eb9dd9-dd26-4883-8f8a-a1f1bbb4c5ad)
 
 # Riscduino UNO compilation output
 
-![image](https://github.com/Pritham13/smart_compost_riscduino/assets/143584964/a4445a9a-8f83-46cd-8dce-93140235e384)
+![Screenshot (334)](https://github.com/Pritham13/smart_compost_riscduino/assets/137704414/49009814-6d80-409f-a7f4-efa7e41ac837)
 
 # NodeMCU compilation output
 
 ![image](https://github.com/Pritham13/smart_compost_riscduino/assets/143584964/a17afeb4-c91d-4155-a8f5-bac18ffc1993)
+
 
